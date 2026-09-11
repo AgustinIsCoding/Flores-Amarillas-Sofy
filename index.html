@@ -1,0 +1,167 @@
+<!doctype html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Para Sofy 💛</title>
+    <link rel="stylesheet" href="styles.css" />
+</head>
+<audio id="bgMusic" loop>
+    <source src="Amor.mp3" type="audio/mpeg" />
+</audio>
+
+<body>
+    <canvas id="hc"></canvas>
+    <div class="particles-container" id="petals"></div>
+
+    <div class="scene">
+        <div id="env-wrap">
+            <div class="envelope" id="envelope">
+                <div class="env-body"></div>
+                <div class="env-flap" id="flap"></div>
+                <div class="env-bl"></div>
+                <div class="env-br"></div>
+                <div class="seal" id="seal">🌻</div>
+            </div>
+            <p class="tap-hint">toca para abrir</p>
+        </div>
+
+        <div class="message-box" id="msg">
+            <div class="bouquet-wrap" id="bouquet">
+                <!--
+        Flower centers (absolute coords, no translate):
+          Main:  cx=120, cy=115
+          Left:  cx=78,  cy=140
+          Right: cx=162, cy=140
+        All petals use rotate(deg, cx, cy) so they stay anchored correctly.
+        viewBox has 40px padding on all sides so bob animation never clips.
+      -->
+                <svg viewBox="0 0 240 300" xmlns="http://www.w3.org/2000/svg" width="100%">
+                    <!-- STEMS + LEAVES (sway from ribbon) -->
+                    <g style="
+                animation: sway 4s ease-in-out infinite;
+                transform-origin: 120px 240px;
+              ">
+                        <line x1="120" y1="238" x2="120" y2="137" stroke="#5a8a42" stroke-width="4"
+                            stroke-linecap="round" />
+                        <line x1="116" y1="234" x2="80" y2="158" stroke="#5a8a42" stroke-width="3.5"
+                            stroke-linecap="round" />
+                        <line x1="124" y1="234" x2="160" y2="158" stroke="#5a8a42" stroke-width="3.5"
+                            stroke-linecap="round" />
+                        <!-- leaves -->
+                        <ellipse cx="100" cy="206" rx="16" ry="6" fill="#6aaa50" transform="rotate(-42,100,206)" />
+                        <ellipse cx="140" cy="206" rx="16" ry="6" fill="#6aaa50" transform="rotate(42,140,206)" />
+                        <ellipse cx="88" cy="184" rx="12" ry="5" fill="#5a9440" transform="rotate(-55,88,184)" />
+                        <ellipse cx="152" cy="184" rx="12" ry="5" fill="#5a9440" transform="rotate(55,152,184)" />
+                    </g>
+
+                    <!-- RIBBON -->
+                    <path d="M108 244 Q93 231 105 227 Q117 223 117 237Z" fill="#e84060" />
+                    <path d="M132 244 Q147 231 135 227 Q123 223 123 237Z" fill="#e84060" />
+                    <ellipse cx="120" cy="241" rx="8" ry="6" fill="#ff6080" />
+                    <ellipse cx="120" cy="241" rx="4.5" ry="3.5" fill="#c02848" />
+                    <path d="M116 245 Q110 255 107 261" stroke="#e84060" stroke-width="3" fill="none"
+                        stroke-linecap="round" />
+                    <path d="M124 245 Q130 255 133 261" stroke="#e84060" stroke-width="3" fill="none"
+                        stroke-linecap="round" />
+
+                    <!-- FLOWER LEFT  (center at 78,140) -->
+                    <g style="
+                animation: bob 4s ease-in-out 0.6s infinite;
+                transform-origin: 78px 140px;
+              ">
+                        <ellipse cx="78" cy="120" rx="8" ry="17" fill="#f0c018" transform="rotate(0,78,140)" />
+                        <ellipse cx="78" cy="120" rx="8" ry="17" fill="#f0c018" transform="rotate(45,78,140)" />
+                        <ellipse cx="78" cy="120" rx="8" ry="17" fill="#f0c018" transform="rotate(90,78,140)" />
+                        <ellipse cx="78" cy="120" rx="8" ry="17" fill="#f0c018" transform="rotate(135,78,140)" />
+                        <ellipse cx="78" cy="120" rx="8" ry="17" fill="#f0c018" transform="rotate(180,78,140)" />
+                        <ellipse cx="78" cy="120" rx="8" ry="17" fill="#f0c018" transform="rotate(225,78,140)" />
+                        <ellipse cx="78" cy="120" rx="8" ry="17" fill="#f0c018" transform="rotate(270,78,140)" />
+                        <ellipse cx="78" cy="120" rx="8" ry="17" fill="#f0c018" transform="rotate(315,78,140)" />
+                        <circle cx="78" cy="140" r="14" fill="#3a1800" />
+                        <circle cx="78" cy="140" r="9" fill="#261000" />
+                        <circle cx="78" cy="134" r="2" fill="#7a4010" opacity=".8" />
+                        <circle cx="83" cy="143" r="2" fill="#7a4010" opacity=".8" />
+                        <circle cx="73" cy="143" r="2" fill="#7a4010" opacity=".8" />
+                    </g>
+
+                    <!-- FLOWER RIGHT (center at 162,140) -->
+                    <g style="
+                animation: bob 3.7s ease-in-out 1.1s infinite;
+                transform-origin: 162px 140px;
+              ">
+                        <ellipse cx="162" cy="120" rx="8" ry="17" fill="#fad028" transform="rotate(22.5,162,140)" />
+                        <ellipse cx="162" cy="120" rx="8" ry="17" fill="#fad028" transform="rotate(67.5,162,140)" />
+                        <ellipse cx="162" cy="120" rx="8" ry="17" fill="#fad028" transform="rotate(112.5,162,140)" />
+                        <ellipse cx="162" cy="120" rx="8" ry="17" fill="#fad028" transform="rotate(157.5,162,140)" />
+                        <ellipse cx="162" cy="120" rx="8" ry="17" fill="#fad028" transform="rotate(202.5,162,140)" />
+                        <ellipse cx="162" cy="120" rx="8" ry="17" fill="#fad028" transform="rotate(247.5,162,140)" />
+                        <ellipse cx="162" cy="120" rx="8" ry="17" fill="#fad028" transform="rotate(292.5,162,140)" />
+                        <ellipse cx="162" cy="120" rx="8" ry="17" fill="#fad028" transform="rotate(337.5,162,140)" />
+                        <circle cx="162" cy="140" r="14" fill="#3a1800" />
+                        <circle cx="162" cy="140" r="9" fill="#261000" />
+                        <circle cx="162" cy="134" r="2" fill="#7a4010" opacity=".8" />
+                        <circle cx="167" cy="143" r="2" fill="#7a4010" opacity=".8" />
+                        <circle cx="157" cy="143" r="2" fill="#7a4010" opacity=".8" />
+                    </g>
+
+                    <!-- FLOWER MAIN  (center at 120,110) -->
+                    <g style="
+                animation: bob 3.2s ease-in-out infinite;
+                transform-origin: 120px 110px;
+              ">
+                        <ellipse cx="120" cy="85" rx="11" ry="22" fill="#ffe038" transform="rotate(0,120,110)" />
+                        <ellipse cx="120" cy="85" rx="11" ry="22" fill="#ffe038" transform="rotate(30,120,110)" />
+                        <ellipse cx="120" cy="85" rx="11" ry="22" fill="#ffe038" transform="rotate(60,120,110)" />
+                        <ellipse cx="120" cy="85" rx="11" ry="22" fill="#ffe038" transform="rotate(90,120,110)" />
+                        <ellipse cx="120" cy="85" rx="11" ry="22" fill="#ffe038" transform="rotate(120,120,110)" />
+                        <ellipse cx="120" cy="85" rx="11" ry="22" fill="#ffe038" transform="rotate(150,120,110)" />
+                        <ellipse cx="120" cy="85" rx="11" ry="22" fill="#ffe038" transform="rotate(180,120,110)" />
+                        <ellipse cx="120" cy="85" rx="11" ry="22" fill="#ffe038" transform="rotate(210,120,110)" />
+                        <ellipse cx="120" cy="85" rx="11" ry="22" fill="#ffe038" transform="rotate(240,120,110)" />
+                        <ellipse cx="120" cy="85" rx="11" ry="22" fill="#ffe038" transform="rotate(270,120,110)" />
+                        <ellipse cx="120" cy="85" rx="11" ry="22" fill="#ffe038" transform="rotate(300,120,110)" />
+                        <ellipse cx="120" cy="85" rx="11" ry="22" fill="#ffe038" transform="rotate(330,120,110)" />
+                        <circle cx="120" cy="110" r="20" fill="#3e1e00" />
+                        <circle cx="120" cy="110" r="14" fill="#281200" />
+                        <circle cx="120" cy="103" r="2.5" fill="#7a4818" opacity=".85" />
+                        <circle cx="126" cy="107" r="2.5" fill="#7a4818" opacity=".85" />
+                        <circle cx="126" cy="114" r="2.5" fill="#7a4818" opacity=".85" />
+                        <circle cx="120" cy="117" r="2.5" fill="#7a4818" opacity=".85" />
+                        <circle cx="114" cy="114" r="2.5" fill="#7a4818" opacity=".85" />
+                        <circle cx="114" cy="107" r="2.5" fill="#7a4818" opacity=".85" />
+                        <circle cx="120" cy="110" r="2" fill="#6a3810" opacity=".7" />
+                    </g>
+                </svg>
+            </div>
+            <h1 class="message-title">
+                Las flores amarillas para,<br />la persona que más quiero<br />del mundo
+            </h1>
+            <div class="divider"></div>
+            <p class="message-text">
+                Hay flores que nacen para alegrar el mundo,<br />
+                y personas que nacen para alegrar los corazones.<br />
+                Tú eres de esas personas.<br /><br />
+                Que cada girasol te recuerde<br />
+                que alguien piensa en ti y sonríe. 💛<br />
+                Te quiero mucho Sofy 💛
+            </p>
+            <div class="flower-row">
+                <span class="mini-flower">🌻</span>
+                <span class="mini-flower">🌸</span>
+                <span class="mini-flower">🌻</span>
+                <span class="mini-flower">🌸</span>
+                <span class="mini-flower">🌻</span>
+                <span class="mini-flower">🌸</span>
+                <span class="mini-flower">🌻</span>
+                <span class="mini-flower">🌸</span>
+                <span class="mini-flower">🌻</span>
+            </div>
+            <button class="again-btn" id="againBtn">ver otra vez ✦</button>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+
+</html>
